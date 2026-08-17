@@ -673,7 +673,7 @@
     <div class="admin-link"><button id="adminToggle" type="button">Couple &amp; family admin view</button></div>
     <div class="admin-panel" id="adminPanel">
       <h3>RSVP Responses</h3>
-      <p class="admin-sub">Visible to anyone with this link — intended for Jacob &amp; Rini's family to review guest replies.</p>
+      <p class="admin-sub">Every RSVP is also saved to the linked Google Sheet — that's the reliable place to check responses. This panel is a quick in-page preview and only shows entries submitted during this browser session.</p>
       <div class="admin-stats" id="adminStats"></div>
       <div style="overflow-x:auto;">
         <table class="admin-table" id="adminTable">
@@ -941,19 +941,55 @@
     });
   });
 
-  /* ---------- Persistent storage for RSVPs ---------- */
+  /* ---------- RSVP storage: Google Form (real backend) ---------- */
+  // Responses are sent to the couple's Google Form and land in the
+  // linked Google Sheet: check the Sheet to see every RSVP.
+  var GOOGLE_FORM_ID = '1FAIpQLSfucZ9h4_IO92uIxh6ppUQFzN3HbfbDiisXvctJ1AIKhojlWA';
+  var GOOGLE_FORM_ACTION = 'https://docs.google.com/forms/d/e/' + GOOGLE_FORM_ID + '/formResponse';
+  var GOOGLE_FIELD_MAP = {
+    name: 'entry.1448895055',
+    email: 'entry.1438846928',
+    phone: 'entry.1125536642',
+    attending: 'entry.1059305308',
+    guestCount: 'entry.1859543245',
+    diet: 'entry.1155175680',
+    guestNames: 'entry.778857917',
+    message: 'entry.1740708087'
+  };
+
   function hasStorage(){ return typeof window.storage !== 'undefined' && window.storage; }
 
   function saveRSVP(entry){
-    if(!hasStorage()){
-      // Fallback: keep in-memory only for this session
+    var body = new URLSearchParams();
+    body.append(GOOGLE_FIELD_MAP.name, entry.name);
+    body.append(GOOGLE_FIELD_MAP.email, entry.email);
+    body.append(GOOGLE_FIELD_MAP.phone, entry.phone);
+    body.append(GOOGLE_FIELD_MAP.attending, entry.attending === 'accept' ? 'Yes' : 'No');
+    body.append(GOOGLE_FIELD_MAP.guestCount, entry.guestCount);
+    body.append(GOOGLE_FIELD_MAP.diet, entry.diet);
+    body.append(GOOGLE_FIELD_MAP.guestNames, entry.guestNames);
+    body.append(GOOGLE_FIELD_MAP.message, entry.message);
+
+    // Google Forms blocks reading the response (no-cors), so we can't
+    // confirm success from the response itself — if the request doesn't
+    // throw, we treat it as sent.
+    var googleFormPromise = fetch(GOOGLE_FORM_ACTION, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body.toString()
+    }).then(function(){ return true; }).catch(function(){ return false; });
+
+    // Also mirror into Claude's artifact storage when available, so the
+    // in-page admin view keeps working while previewing inside Claude.
+    if(hasStorage()){
+      window.storage.set('rsvp:' + entry.id, JSON.stringify(entry), true).catch(function(){});
+    } else {
       window.__rsvpFallback = window.__rsvpFallback || [];
       window.__rsvpFallback.push(entry);
-      return Promise.resolve(true);
     }
-    return window.storage.set('rsvp:' + entry.id, JSON.stringify(entry), true)
-      .then(function(res){ return !!res; })
-      .catch(function(){ return false; });
+
+    return googleFormPromise;
   }
 
   function loadAllRSVPs(){
