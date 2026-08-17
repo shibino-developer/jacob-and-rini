@@ -941,44 +941,26 @@
     });
   });
 
-  /* ---------- RSVP storage: Google Form (real backend) ---------- */
-  // Responses are sent to the couple's Google Form and land in the
-  // linked Google Sheet: check the Sheet to see every RSVP.
-  var GOOGLE_FORM_ID = '1FAIpQLSfucZ9h4_IO92uIxh6ppUQFzN3HbfbDiisXvctJ1AIKhojlWA';
-  var GOOGLE_FORM_ACTION = 'https://docs.google.com/forms/d/e/' + GOOGLE_FORM_ID + '/formResponse';
-  var GOOGLE_FIELD_MAP = {
-    name: 'entry.1448895055',
-    email: 'entry.1438846928',
-    phone: 'entry.1125536642',
-    attending: 'entry.1059305308',
-    guestCount: 'entry.1859543245',
-    diet: 'entry.1155175680',
-    guestNames: 'entry.778857917',
-    message: 'entry.1740708087'
-  };
+  /* ---------- RSVP storage: Formspree (real backend, real response) ---------- */
+  // Every submission posts here, lands in your Formspree dashboard, and
+  // triggers an email notification to the account owner.
+  var FORMSPREE_ENDPOINT = 'https://formspree.io/f/xwleroka';
 
   function hasStorage(){ return typeof window.storage !== 'undefined' && window.storage; }
 
   function saveRSVP(entry){
-    var body = new URLSearchParams();
-    body.append(GOOGLE_FIELD_MAP.name, entry.name);
-    body.append(GOOGLE_FIELD_MAP.email, entry.email);
-    body.append(GOOGLE_FIELD_MAP.phone, entry.phone);
-    body.append(GOOGLE_FIELD_MAP.attending, entry.attending === 'accept' ? 'Yes' : 'No');
-    body.append(GOOGLE_FIELD_MAP.guestCount, entry.guestCount);
-    body.append(GOOGLE_FIELD_MAP.diet, entry.diet);
-    body.append(GOOGLE_FIELD_MAP.guestNames, entry.guestNames);
-    body.append(GOOGLE_FIELD_MAP.message, entry.message);
-
-    // Google Forms blocks reading the response (no-cors), so we can't
-    // confirm success from the response itself — if the request doesn't
-    // throw, we treat it as sent.
-    var googleFormPromise = fetch(GOOGLE_FORM_ACTION, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: body.toString()
-    }).then(function(){ return true; }).catch(function(){ return false; });
+    var payload = {
+      _subject: 'New RSVP — ' + entry.name + ' (' + (entry.attending === 'accept' ? 'Accepted' : 'Declined') + ')',
+      'Full Name': entry.name,
+      'Email Address': entry.email,
+      'Phone Number': entry.phone,
+      'Will Attend': entry.attending === 'accept' ? 'Yes' : 'No',
+      'Number of Guests': entry.guestCount,
+      'Dietary Preference': entry.diet,
+      'Guest Names': entry.guestNames,
+      'Message': entry.message,
+      'Submitted At': entry.submittedAt
+    };
 
     // Also mirror into Claude's artifact storage when available, so the
     // in-page admin view keeps working while previewing inside Claude.
@@ -989,7 +971,18 @@
       window.__rsvpFallback.push(entry);
     }
 
-    return googleFormPromise;
+    return fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    }).then(function(res){
+      return res.ok;
+    }).catch(function(){
+      return false;
+    });
   }
 
   function loadAllRSVPs(){
