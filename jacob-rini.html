@@ -84,14 +84,14 @@
   /* ---------- Nav ---------- */
   .nav{
     position:fixed; top:0; left:0; right:0; z-index:100;
-    background:rgba(251,246,234,0.0);
-    transition:background .4s ease, box-shadow .4s ease, padding .4s ease;
-    padding:26px 0;
-  }
-  .nav.scrolled{
-    background:rgba(251,246,234,0.92);
+    background:rgba(251,246,234,0.85);
     backdrop-filter:blur(10px);
     box-shadow:0 1px 0 var(--line);
+    transition:box-shadow .4s ease, padding .4s ease;
+    padding:16px 0;
+  }
+  .nav.scrolled{
+    background:rgba(251,246,234,0.95);
     padding:14px 0;
   }
   .nav .wrap{display:flex; align-items:center; justify-content:space-between;}
@@ -129,31 +129,78 @@
     .hamburger{display:flex;}
   }
 
-  /* ---------- Envelope hero (reference style) ---------- */
-  .envelope{
-    max-width:420px; margin:0 auto; background:var(--wine); color:var(--paper);
-    padding:56px 32px 46px; text-align:center; position:relative; overflow:hidden;
-    box-shadow:var(--shadow);
+  /* ---------- Split hero (photo + text) ---------- */
+  .hero-split{
+    display:grid; grid-template-columns:0.62fr 1fr; min-height:100vh;
   }
-  .envelope::after{
-    content:''; position:absolute; left:0; right:0; bottom:-1px; height:70px;
-    background:linear-gradient(135deg, transparent 49.3%, var(--ivory) 49.3%) top left/50% 100% no-repeat,
-               linear-gradient(225deg, transparent 49.3%, var(--ivory) 49.3%) top right/50% 100% no-repeat;
+  .hero-split-photo{
+    background:
+      radial-gradient(circle at 30% 20%, rgba(255,255,255,0.08), transparent 50%),
+      linear-gradient(160deg, var(--wine), var(--wine-deep));
+    display:flex; align-items:center; justify-content:center; text-align:center; padding:40px;
+    position:relative; min-height:340px;
   }
-  .envelope .env-names{
-    font-family:'Alex Brush', cursive; font-size:clamp(46px,9vw,64px); line-height:1.15; font-weight:400;
+  .hero-split-photo::before{
+    content:''; position:absolute; inset:24px; border:1px solid rgba(230,196,175,0.45);
   }
-  .envelope .env-amp{display:block; font-size:0.5em; margin:2px 0; color:var(--gold-light);}
-  .envelope .env-eyebrow{
-    font-family:'Cormorant SC','Cormorant Garamond',serif; letter-spacing:.3em; text-transform:uppercase;
-    font-size:11px; color:var(--gold-light); margin-bottom:18px; display:block;
+  .hero-split-photo .ph-label{
+    font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--gold-light); font-size:17px; line-height:1.6;
   }
-  .envelope .env-date{
-    margin-top:30px; font-family:'Cormorant SC','Cormorant Garamond',serif; letter-spacing:.2em;
-    text-transform:uppercase; font-size:13px; color:var(--blush-light);
+  .hero-split-text{
+    display:flex; flex-direction:column; align-items:flex-start; justify-content:center;
+    padding:110px 64px 64px; text-align:left;
+  }
+  .hero-split-text .hero-script{
+    font-size:clamp(52px,7vw,84px); color:var(--wine); margin-top:10px; text-align:left;
+  }
+  .hero-split-text .hero-script-amp{color:var(--gold);}
+  .hero-split-text .monogram{margin:22px 0 0;}
+  .hero-split-text .hero-tagline{max-width:420px; margin-top:22px; text-align:left;}
+  .hero-split-text .hero-meta{margin-top:30px; justify-content:flex-start;}
+  .hero-split-text .countdown{margin-top:44px; gap:clamp(14px,2.6vw,30px);}
+  .hero-split-text .scroll-cta{margin-top:44px;}
+
+  @media (max-width:900px){
+    .hero-split{grid-template-columns:1fr; min-height:auto;}
+    .hero-split-photo{min-height:220px; order:1;}
+    .hero-split-text{order:2; padding:56px 28px 64px; align-items:center; text-align:center;}
+    .hero-split-text .hero-script{text-align:center;}
+    .hero-split-text .hero-tagline{text-align:center; margin-left:auto; margin-right:auto;}
+    .hero-split-text .hero-meta{justify-content:center;}
+    .hero-split-text .scroll-cta{text-align:center;}
   }
 
-  .monogram{
+  /* ---------- Full-bleed maroon hero ---------- */
+  .hero-maroon{
+    background:var(--wine); color:var(--paper);
+  }
+  .hero-maroon::before{
+    background:
+      radial-gradient(circle at 50% 8%, rgba(255,255,255,0.06), transparent 45%),
+      radial-gradient(circle at 85% 90%, rgba(0,0,0,0.12), transparent 45%);
+  }
+  .eyebrow-light{color:var(--gold-light);}
+  .hero-script{
+    font-family:'Alex Brush', cursive; font-weight:400; line-height:1;
+    font-size:clamp(64px,13vw,132px); margin-top:14px; color:var(--paper);
+  }
+  .hero-script-amp{
+    display:inline-block; font-size:0.55em; margin:0 14px; color:var(--gold-light); vertical-align:middle;
+  }
+  .monogram-light{
+    border-color:var(--gold-light); color:var(--paper); margin-top:20px;
+  }
+  .monogram-light .sep{color:var(--gold-light);}
+  .hero-tagline-light{color:var(--blush-light);}
+  .hero-meta-light{color:var(--paper);}
+  .hero-meta-light .dot{color:var(--gold-light);}
+  .countdown-light .num{color:var(--paper);}
+  .countdown-light .lbl{color:var(--blush-light);}
+  .countdown-light .sep{color:var(--gold-light);}
+  .btn-outline-light{color:var(--paper); border-color:var(--gold-light);}
+  .btn-outline-light:hover{background:var(--paper); color:var(--wine); border-color:var(--paper);}
+
+  /* ---------- Monogram badge ---------- */
     width:74px; height:74px; border:1px solid var(--gold); border-radius:50%; margin:0 auto 22px;
     display:flex; align-items:center; justify-content:center; gap:4px;
     font-family:'Cormorant Garamond',serif; font-size:22px; letter-spacing:0.06em; color:var(--wine);
@@ -477,20 +524,18 @@
 </div>
 
 <!-- ============ HERO ============ -->
-<section class="hero" id="home">
-  <div class="envelope reveal">
-    <span class="env-eyebrow">Save The Date</span>
-    <div class="env-names">Jacob<span class="env-amp">&amp;</span>Rini</div>
-  </div>
+<section class="hero hero-maroon" id="home">
+  <span class="eyebrow eyebrow-light">You Are Joyfully Invited</span>
+  <div class="hero-script reveal">Jacob<span class="hero-script-amp">&amp;</span>Rini</div>
 
-  <div class="monogram" style="margin-top:-8px;"><span>J</span><span class="sep">|</span><span>R</span></div>
-  <span class="eyebrow">You Are Joyfully Invited</span>
-  <p class="hero-tagline">Together with their families, we invite you to celebrate their wedding</p>
-  <div class="hero-meta">
+  <div class="monogram monogram-light"><span>J</span><span class="sep">|</span><span>R</span></div>
+
+  <p class="hero-tagline hero-tagline-light">Together with their families, we invite you to celebrate their wedding</p>
+  <div class="hero-meta hero-meta-light">
     <span>9 November 2026</span><span class="dot">•</span><span>12:00 PM</span><span class="dot">•</span><span>St. George Orthodox Church, Mylapra</span>
   </div>
 
-  <div class="countdown" id="countdown" aria-live="polite">
+  <div class="countdown countdown-light" id="countdown" aria-live="polite">
     <div class="cell"><span class="num" id="cd-days">00</span><span class="lbl">Days</span></div>
     <div class="sep">:</div>
     <div class="cell"><span class="num" id="cd-hours">00</span><span class="lbl">Hours</span></div>
@@ -501,7 +546,7 @@
   </div>
 
   <div class="scroll-cta">
-    <a href="#invitation" class="btn btn-outline">View Invitation</a>
+    <a href="#invitation" class="btn btn-outline btn-outline-light">View Invitation</a>
   </div>
 </section>
 
