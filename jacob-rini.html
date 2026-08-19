@@ -9,16 +9,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Alex+Brush&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ivory:#FAF5EA;
-    --paper:#FCF9F2;
+    --ivory:#EEF2FA;
+    --paper:#F9FBFE;
     --gold:#B8925A;
-    --gold-deep:#8C6A3A;
-    --gold-pale:#E9DAC1;
-    --maroon:#6E2B3A;
-    --sage:#7C8768;
-    --ink:#2E2A24;
-    --ink-soft:#5C554A;
-    --shadow: 0 20px 60px rgba(46,42,36,0.18);
+    --gold-deep:#5E7CA3;
+    --gold-pale:#CBD9EC;
+    --maroon:#33465E;
+    --sage:#D89AA0;
+    --ink:#26303F;
+    --ink-soft:#5B6478;
+    --shadow: 0 20px 60px rgba(38,48,63,0.16);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
@@ -76,8 +76,8 @@
     position:fixed; inset:0; z-index:999;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     background:
-      radial-gradient(ellipse at 20% 15%, rgba(184,146,90,0.10), transparent 55%),
-      radial-gradient(ellipse at 85% 85%, rgba(110,43,58,0.08), transparent 55%),
+      radial-gradient(ellipse at 20% 15%, rgba(94,124,163,0.10), transparent 55%),
+      radial-gradient(ellipse at 85% 85%, rgba(51,70,94,0.08), transparent 55%),
       var(--ivory);
     transition:opacity 1s ease, visibility 1s ease;
   }
@@ -85,7 +85,7 @@
     content:'';
     position:absolute; inset:0;
     background-image:
-      radial-gradient(rgba(140,106,58,0.05) 1px, transparent 1px);
+      radial-gradient(rgba(94,124,163,0.05) 1px, transparent 1px);
     background-size:3px 3px;
     pointer-events:none;
   }
@@ -116,24 +116,24 @@
   }
   .envelope{
     position:absolute; inset:0;
-    filter:drop-shadow(0 22px 40px rgba(110,43,58,0.18));
+    filter:drop-shadow(0 22px 40px rgba(51,70,94,0.18));
   }
   .env-body{
     position:absolute; inset:0;
-    background:linear-gradient(180deg, var(--paper), #F5EEDF);
+    background:linear-gradient(180deg, var(--paper), #EAF0F9);
     border:1.5px solid var(--gold);
     border-radius:4px;
   }
   .env-body::after{
     content:''; position:absolute; inset:6px;
-    border:1px solid rgba(184,146,90,0.5);
+    border:1px solid rgba(94,124,163,0.5);
     border-radius:2px;
     pointer-events:none;
   }
   .env-flap{
     position:absolute; top:0; left:0; width:100%; height:62%;
     clip-path:polygon(0 0, 100% 0, 50% 100%);
-    background:linear-gradient(160deg, #F1E6D0, var(--gold-pale));
+    background:linear-gradient(160deg, #E3EAF6, var(--gold-pale));
     border-bottom:1.5px solid var(--gold);
     transform-origin:top center;
     transition:transform 1s cubic-bezier(.65,0,.35,1);
@@ -141,14 +141,14 @@
   }
   .env-flap::before{
     content:''; position:absolute; left:50%; top:14%; width:70%; height:1px;
-    background:rgba(184,146,90,0.5); transform:translateX(-50%);
+    background:rgba(94,124,163,0.5); transform:translateX(-50%);
   }
   .env-shadow-pocket{
     position:absolute; inset:0; z-index:4;
-    background:linear-gradient(180deg, rgba(110,43,58,0.05), transparent 40%);
+    background:linear-gradient(180deg, rgba(51,70,94,0.05), transparent 40%);
   }
   .card-inside{
-    position:absolute; left:50%; top:46%;
+    position:absolute; left:50%; top:60%;
     width:82%; height:78%;
     transform:translate(-50%, 0%);
     background:var(--paper);
@@ -159,7 +159,7 @@
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     gap:6px;
     transition:transform 1.4s cubic-bezier(.22,1,.36,1), opacity 1.4s ease;
-    padding:10px;
+    padding:20px;
     text-align:center;
   }
   .card-inside .cs{font-family:'Cormorant Garamond', serif; color:var(--maroon); font-size:0.95rem; letter-spacing:0.08em;}
@@ -171,18 +171,18 @@
   }
   .seal{
     width:76px; height:76px; border-radius:50%;
-    background:radial-gradient(circle at 35% 30%, #8a2f3f, var(--maroon) 60%, #551e29 100%);
+    background:radial-gradient(circle at 35% 30%, #6F8FB5, var(--maroon) 60%, #1E2A3A 100%);
     display:flex; align-items:center; justify-content:center;
-    box-shadow:0 6px 14px rgba(85,30,41,0.5), inset 0 -4px 8px rgba(0,0,0,0.25), inset 0 3px 6px rgba(255,255,255,0.15);
-    border:1px solid rgba(184,146,90,0.6);
+    box-shadow:0 6px 14px rgba(30,42,58,0.5), inset 0 -4px 8px rgba(0,0,0,0.25), inset 0 3px 6px rgba(255,255,255,0.15);
+    border:1px solid rgba(94,124,163,0.6);
     animation:sealPulse 2.4s ease-in-out infinite;
     transition:transform 0.25s ease;
   }
   .seal-wrap:hover .seal{transform:scale(1.05);}
   .seal-wrap:active .seal{transform:scale(0.94);}
   @keyframes sealPulse{
-    0%,100%{box-shadow:0 6px 14px rgba(85,30,41,0.5), 0 0 0 0 rgba(184,146,90,0.35), inset 0 -4px 8px rgba(0,0,0,0.25), inset 0 3px 6px rgba(255,255,255,0.15);}
-    50%{box-shadow:0 6px 14px rgba(85,30,41,0.5), 0 0 0 10px rgba(184,146,90,0), inset 0 -4px 8px rgba(0,0,0,0.25), inset 0 3px 6px rgba(255,255,255,0.15);}
+    0%,100%{box-shadow:0 6px 14px rgba(30,42,58,0.5), 0 0 0 0 rgba(94,124,163,0.35), inset 0 -4px 8px rgba(0,0,0,0.25), inset 0 3px 6px rgba(255,255,255,0.15);}
+    50%{box-shadow:0 6px 14px rgba(30,42,58,0.5), 0 0 0 10px rgba(94,124,163,0), inset 0 -4px 8px rgba(0,0,0,0.25), inset 0 3px 6px rgba(255,255,255,0.15);}
   }
   .seal-monogram{
     font-family:'Cormorant Garamond', serif; color:var(--gold-pale);
@@ -280,7 +280,7 @@
     min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
     text-align:center; padding:80px 24px 60px; position:relative;
     background:
-      radial-gradient(ellipse at 50% 0%, rgba(184,146,90,0.10), transparent 60%);
+      radial-gradient(ellipse at 50% 0%, rgba(94,124,163,0.10), transparent 60%);
   }
   .hero-eyebrow{opacity:0; animation:heroIn 1s ease forwards 0.1s;}
   .hero-names{
@@ -312,7 +312,7 @@
     outline:1px solid var(--gold-pale);
     box-shadow:var(--shadow);
     background:
-      linear-gradient(160deg, #EFE3CB, #E3D2AE 55%, #D9C79C);
+      linear-gradient(160deg, #E3EAF6, #CBD8EC 55%, #AFC2DC);
     display:flex; align-items:center; justify-content:center;
   }
   .hero-photo .frame .ph-label{
@@ -348,10 +348,20 @@
   }
   .btn:hover{background:var(--gold-deep); color:var(--ivory);}
   .btn.filled{background:var(--maroon); border-color:var(--maroon); color:var(--ivory);}
-  .btn.filled:hover{background:#571f2b;}
+  .btn.filled:hover{background:#1E2A3A;}
 
   /* BIBLE VERSE */
   #verse{background:var(--ivory);}
+  /* FORMAL INVITATION CARD */
+  #formal-invite{background:var(--paper);}
+  .invite-card-frame{
+    width:min(360px, 82vw); margin:34px auto 0; padding:14px;
+    background:var(--ivory); border:1px solid var(--gold-pale);
+    box-shadow:var(--shadow); border-radius:4px;
+  }
+  .invite-card-frame img{width:100%; border-radius:2px; display:block;}
+  .invite-card-caption{margin-top:14px; font-size:0.85rem; color:var(--ink-soft);}
+
   .verse-mark{font-family:'Cormorant Garamond', serif; font-size:2.6rem; color:var(--maroon);}
   .verse-quote{
     max-width:640px; margin:14px auto; font-size:clamp(1.3rem,3vw,1.7rem);
@@ -365,7 +375,7 @@
   #countdown .eyebrow{color:var(--gold-pale);}
   .cd-grid{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:36px;}
   .cd-box{
-    width:110px; padding:22px 0; border:1px solid rgba(233,218,193,0.35); border-radius:4px;
+    width:110px; padding:22px 0; border:1px solid rgba(203,217,236,0.35); border-radius:4px;
     background:rgba(255,255,255,0.03);
   }
   .cd-box .num{font-family:'Cormorant Garamond', serif; font-size:2.6rem; color:var(--gold-pale);}
@@ -398,7 +408,7 @@
   #reception{background:var(--ivory);}
   .venue-illustration{
     width:min(420px,90vw); aspect-ratio:16/9; margin:30px auto 0;
-    background:linear-gradient(150deg, #EFE3CB, #E3D2AE 60%, #D9C79C);
+    background:linear-gradient(150deg, #E3EAF6, #CBD8EC 60%, #AFC2DC);
     border:1px solid var(--gold-pale); box-shadow:var(--shadow);
     display:flex; align-items:center; justify-content:center;
   }
@@ -416,7 +426,7 @@
   }
   .g-item .ph{
     width:100%; display:flex; align-items:center; justify-content:center;
-    background:linear-gradient(160deg, #EFE3CB, #E3D2AE 55%, #D9C79C);
+    background:linear-gradient(160deg, #E3EAF6, #CBD8EC 55%, #AFC2DC);
     color:var(--gold-deep); font-family:'Cormorant Garamond', serif; font-style:italic;
     padding:38% 10px;
   }
@@ -428,7 +438,7 @@
   }
   .lightbox.open{display:flex;}
   .lightbox .lb-inner{
-    width:min(560px,90vw); aspect-ratio:4/5; background:linear-gradient(160deg,#EFE3CB,#E3D2AE 55%,#D9C79C);
+    width:min(560px,90vw); aspect-ratio:4/5; background:linear-gradient(160deg,#E3EAF6,#CBD8EC 55%,#AFC2DC);
     border:6px solid var(--paper); display:flex; align-items:center; justify-content:center;
     font-family:'Cormorant Garamond', serif; font-style:italic; color:var(--gold-deep); font-size:1.2rem;
   }
@@ -440,7 +450,7 @@
   #rsvp .eyebrow{color:var(--gold-pale);}
   .rsvp-form{
     max-width:560px; margin:40px auto 0; text-align:left;
-    background:rgba(255,255,255,0.04); border:1px solid rgba(233,218,193,0.3);
+    background:rgba(255,255,255,0.04); border:1px solid rgba(203,217,236,0.3);
     padding:36px; border-radius:6px;
   }
   .rsvp-form label{
@@ -450,7 +460,7 @@
   .rsvp-form label:first-child{margin-top:0;}
   .rsvp-form input, .rsvp-form select, .rsvp-form textarea{
     width:100%; padding:11px 12px; background:rgba(255,255,255,0.06);
-    border:1px solid rgba(233,218,193,0.35); border-radius:3px; color:var(--ivory);
+    border:1px solid rgba(203,217,236,0.35); border-radius:3px; color:var(--ivory);
     font-family:'EB Garamond', serif; font-size:1rem;
   }
   .rsvp-form input::placeholder, .rsvp-form textarea::placeholder{color:rgba(250,245,234,0.4);}
@@ -470,7 +480,7 @@
   .rsvp-submit:hover{background:#F3E7CC;}
   .rsvp-thanks{
     display:none; max-width:520px; margin:40px auto 0; text-align:center; padding:40px 30px;
-    border:1px solid rgba(233,218,193,0.4); border-radius:6px; background:rgba(255,255,255,0.04);
+    border:1px solid rgba(203,217,236,0.4); border-radius:6px; background:rgba(255,255,255,0.04);
   }
   .rsvp-thanks.show{display:block;}
   .rsvp-thanks p{font-family:'Cormorant Garamond', serif; font-size:1.3rem; line-height:1.6;}
@@ -526,15 +536,15 @@
       <div class="env-flap"></div>
       <div class="seal-wrap" id="seal-trigger" role="button" aria-label="Open invitation" tabindex="0">
         <div class="seal">
-          <div class="seal-monogram">J&nbsp;&amp;&nbsp;R<small>MYLAPRA</small></div>
+          <div class="seal-monogram">J&nbsp;&amp;&nbsp;R</div>
         </div>
       </div>
     </div>
   </div>
 
   <div class="open-cta">
-    <div class="tap-label desktop-only">Click to Open</div>
-    <div class="tap-label mobile-only">Tap to Open</div>
+    <!-- <div class="tap-label desktop-only">Click to Open</div> -->
+    <!-- <div class="tap-label mobile-only">Tap to Open</div> -->
   </div>
 </div>
 
@@ -568,9 +578,9 @@
 
   <!-- HERO -->
   <section id="home">
-    <div class="hero-eyebrow eyebrow">Together with their families</div>
+    <div class="hero-eyebrow eyebrow">Together with our families</div>
     <h1 class="hero-names">Jacob <span class="amp">&amp;</span> Rini</h1>
-    <p class="hero-sub">we invite you to celebrate their wedding, with joy, faith and the blessing of God</p>
+    <p class="hero-sub">we invite you to celebrate our wedding, with joy, faith and the blessing of God</p>
     <div class="hero-divider divider">
       <svg class="cross-motif" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.4"><path d="M12 2v20M4 8h16M6 14h12"/></svg>
     </div>
@@ -593,6 +603,11 @@
     <div class="eyebrow fade-up">The Wedding Ceremony</div>
     <h2 class="section-title fade-up">With Joyful Hearts</h2>
     <p class="verse-text fade-up">With joyful hearts and the blessings of our families, we invite you to join us as we begin our journey together in marriage.</p>
+    <p class="fade-up" style="max-width:520px; margin:0 auto; color:var(--ink-soft); font-size:0.95rem;">
+      Jacob P Abraham, son of Mr. Abraham P. Jacob &amp; Mrs. Mariamma P. Abraham, Plamparambil House, Pathanamthitta
+      &nbsp;&middot;&nbsp;
+      Rini Varghese, daughter of Mr. Varghese George &amp; Mrs. Mary Varghese, Kanjirakattu House, Thiruvananthapuram
+    </p>
 
     <div class="info-card fade-up">
       <div class="date-big">9 November 2026</div>
@@ -601,19 +616,29 @@
       <div class="venue">St. George Orthodox Church<br>Mylapra</div>
       <div class="officiant">
         Solemnized by
-        <strong>His Grace Joseph Mar Dionysius</strong>
-        Metropolitan of Kollam Diocese
+        <strong>H.G.Dr. Joseph Mar Dionysius Metropolitan</strong>
+        Metropolitan of Kollam Diocese, Malankara Orthodox Church
       </div>
       <a class="btn" href="https://www.google.com/maps/search/St.+George+Orthodox+Church+Mylapra" target="_blank" rel="noopener">Get Directions</a>
     </div>
   </section>
 
+  <!-- FORMAL INVITATION CARD
+  <section id="formal-invite" class="section">
+    <div class="eyebrow fade-up">Keepsake</div>
+    <h2 class="section-title fade-up">Our Formal Invitation</h2>
+    <div class="invite-card-frame fade-up">
+      <img src="invitation-card.png" alt="Formal wedding invitation card for Jacob P Abraham and Rini Varghese">
+    </div>
+    <p class="invite-card-caption fade-up">Tap and hold, or use your browser's save option, to keep a copy of the invitation.</p>
+  </section> -->
+
   <!-- BIBLE VERSE -->
   <section id="verse" class="section">
     <div class="verse-mark fade-up">&ldquo;</div>
-    <p class="verse-quote fade-up">Above all, clothe yourselves with love, which binds everything together in perfect harmony. And let the peace of Christ rule in your hearts.</p>
+    <p class="verse-quote fade-up">The Lord has made everything beautiful in his time.</p>
     <div class="divider fade-up"><svg class="cross-motif" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.4"><path d="M12 2v20M4 8h16M6 14h12"/></svg></div>
-    <div class="verse-ref fade-up">Colossians 3:14–15</div>
+    <div class="verse-ref fade-up">Ecclesiastes 3:11</div>
   </section>
 
   <!-- COUNTDOWN -->
@@ -656,10 +681,10 @@
   <section id="reception" class="section">
     <div class="eyebrow fade-up">Join Us After The Ceremony</div>
     <h2 class="section-title fade-up">The Reception</h2>
-    <p class="fade-up" style="color:var(--ink-soft);">Sacred Heart Auditorium</p>
+    <p class="fade-up" style="color:var(--ink-soft);">Sacred Heart Convention Centre<br>Mylapra P.O., Pathanamthitta</p>
     <p class="fade-up eyebrow" style="margin-top:6px;">Time to be announced</p>
-    <div class="venue-illustration fade-up"><span>Sacred Heart Auditorium</span></div>
-    <a class="btn fade-up" style="margin-top:26px;" href="https://www.google.com/maps/search/Sacred+Heart+Auditorium" target="_blank" rel="noopener">Get Directions</a>
+    <div class="venue-illustration fade-up"><span>Sacred Heart Convention Centre</span></div>
+    <a class="btn fade-up" style="margin-top:26px;" href="https://www.google.com/maps/search/Sacred+Heart+Convention+Centre+Mylapra+Pathanamthitta" target="_blank" rel="noopener">Get Directions</a>
   </section>
 
   <!-- GALLERY -->
@@ -738,6 +763,7 @@
   <footer>
     <span class="fname">Jacob &amp; Rini</span>
     With love and gratitude — 9th November 2026 · Mylapra, Kerala
+    <div style="margin-top:10px; font-size:0.78rem; opacity:0.8;">With best compliments from: Shibino P Abraham</div>
   </footer>
 </div>
 
