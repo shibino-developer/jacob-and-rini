@@ -141,7 +141,7 @@
   }
   .env-flap::before{
     content:''; position:absolute; left:50%; top:14%; width:70%; height:1px;
-    background:rgba(94,124,163,0.5); transform:translateX(-50%);
+    background:rgba(0, 5, 10, 0.5); transform:translateX(-50%);
   }
   .env-shadow-pocket{
     position:absolute; inset:0; z-index:4;
@@ -243,7 +243,7 @@
   /* NAV */
   #site-nav{
     position:sticky; top:0; z-index:200;
-    background:rgba(250,245,234,0.92);
+    background:rgba(250,250,250,0.92);
     backdrop-filter:blur(8px);
     border-bottom:1px solid var(--gold-pale);
     display:flex; align-items:center; justify-content:space-between;
@@ -403,6 +403,8 @@
     display:flex; align-items:center; justify-content:center;
   }
   .venue-illustration span{font-family:'Cormorant Garamond', serif; font-style:italic; color:var(--gold-deep);}
+  .venue-illustration.has-photo{background:var(--paper); padding:0; overflow:hidden;}
+  .venue-illustration.has-photo img{width:100%; height:100%; object-fit:cover; display:block;}
 
   /* GALLERY */
   #gallery{background:var(--paper);}
@@ -489,7 +491,7 @@
     background:var(--ink); color:rgba(250,245,234,0.6); text-align:center;
     padding:44px 24px; font-size:0.85rem;
   }
-  footer .fname{font-family:'Alex Brush', cursive; font-size:1.6rem; color:var(--gold-pale); display:block; margin-bottom:8px;}
+  footer .fname{font-family:'Cormorant Garamond', serif; font-size:1.6rem; color:var(--gold-pale); display:block; margin-bottom:8px;}
 
   /* MUSIC BUTTON */
   #music-btn{
@@ -600,14 +602,15 @@
       <div class="time">12:00 PM</div>
       <div class="divider"><svg class="cross-motif" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.4"><path d="M12 2v20M4 8h16M6 14h12"/></svg></div>
       <div class="venue">St. George Orthodox Church<br>Mylapra</div>
-      <div class="venue-illustration fade-up"><span>St. George Orthodox Church</span></div>
-      <div class="officiant">
+      <div class="venue-illustration fade-up has-photo">
+  <img src="church.jpg" alt="St. George Orthodox Church, Mylapra">
+</div>
+<div class="officiant">
         Solemnized by
         <strong>His Grace Joseph Mar Dionysius</strong>
         Metropolitan of Kollam Diocese
       </div>
-      <a class="btn" href="https://www.google.com/maps/search/St.+George+Orthodox+Church+Mylapra" target="_blank" rel="noopener">Get Directions</a>
-    </div>
+      </div>
   </section>
 
   <!-- BIBLE VERSE -->
@@ -637,7 +640,7 @@
     <div class="timeline">
       <div class="t-item fade-up"><div class="t-dot"></div>
         <h3>How We Met</h3>
-        <p>Our story began in a rather unexpected way — with a little help from a matrimony website. Perhaps even the most beautiful beginnings need a little introduction! 😊 We came across each other’s profiles, found something that caught our interest, and decided to meet. What began as a simple meeting soon became a meaningful conversation — sharing our thoughts, dreams, values, and hopes for the future. As we spoke and got to know one another, we found ourselves drawn closer by the things we shared and the differences we came to appreciate. Looking back, we believe that our meeting was not simply a matter of chance, but a quiet answer to prayers we had each carried in our hearts.</p>
+        <p>Our story began in a rather unexpected way — with a little help from a matrimony website. Perhaps even the most beautiful beginnings need a little introduction! 😊 We came across each other's profiles, found something that caught our interest, and decided to meet. What began as a simple meeting soon became a meaningful conversation — sharing our thoughts, dreams, values, and hopes for the future. As we spoke and got to know one another, we found ourselves drawn closer by the things we shared and the differences we came to appreciate. Looking back, we believe that our meeting was not simply a matter of chance, but a quiet answer to prayers we had each carried in our hearts.</p>
       </div>
       <div class="t-item fade-up"><div class="t-dot"></div>
         <h3>Our Journey</h3>
@@ -666,11 +669,14 @@ And as we step into this new chapter, we do so with grateful hearts, trusting th
   <section id="reception" class="section">
     <div class="eyebrow fade-up">Join Us After The Ceremony</div>
     <h2 class="section-title fade-up">The Reception</h2>
-    <p class="fade-up" style="color:var(--ink-soft);">Sacred Heart Auditorium</p>
-    <p class="fade-up eyebrow" style="margin-top:6px;">Time to be announced</p>
-    <div class="venue-illustration fade-up"><span>Sacred Heart Auditorium</span></div>
-    <a class="btn fade-up" style="margin-top:26px;" href="https://www.google.com/maps/search/Sacred+Heart+Auditorium" target="_blank" rel="noopener">Get Directions</a>
-  </section>
+    <div class="info-card fade-up">
+      <div class="time">12:00 PM</div>
+      <div class="divider"><svg class="cross-motif" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.4"><path d="M12 2v20M4 8h16M6 14h12"/></svg></div>
+      <div class="venue">Sacred Heart Convention Centre<br>Mylapra</div>
+      <div class="venue-illustration fade-up has-photo">
+  <img src="reception.jpg" alt="Sacred Heart Convention Centre, Mylapra">
+</div>
+</section>
 
   <!-- GALLERY -->
   <section id="gallery" class="section">
@@ -719,6 +725,21 @@ And as we step into this new chapter, we do so with grateful hearts, trusting th
         <div class="stay-actions">
           <a class="stay-btn primary" href="https://www.booking.com/searchresults.html?ss=Pathanamthitta" target="_blank" rel="noopener">Search Hotels</a>
           <!-- <a class="stay-btn secondary" href="https://www.airbnb.co.in/s/Pathanamthitta" target="_blank" rel="noopener">Search Rentals</a> -->
+        </div>
+      </div>
+
+      <div class="stay-card fade-up">
+        <span class="badge">Nearby town</span>
+        <h3>Kozhencherry</h3>
+        <div class="dist">~15 minute drive from the venue</div>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-pale)" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> A short, easy drive from Mylapra along the main road</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-pale)" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> A mix of small hotels and lodges, with restaurants nearby</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-pale)" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> On the way to Thiruvalla, handy for guests arriving by train</li>
+        </ul>
+        <div class="stay-actions">
+          <a class="stay-btn primary" href="https://www.booking.com/searchresults.html?ss=Kozhencherry" target="_blank" rel="noopener">Search Hotels</a>
+          <!-- <a class="stay-btn secondary" href="https://www.airbnb.co.in/s/Kozhencherry" target="_blank" rel="noopener">Search Rentals</a> -->
         </div>
       </div>
 
