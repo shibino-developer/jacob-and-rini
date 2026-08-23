@@ -302,6 +302,7 @@
   .hero-date-block .item .v{font-family:'Cormorant Garamond', serif; font-size:1.3rem; color:var(--ink); margin-top:2px;}
   @keyframes heroIn{ from{opacity:0; transform:translateY(18px);} to{opacity:1; transform:translateY(0);} }
 
+  /* Hero photo — fixed frame box, image is clipped/cropped to fill it so it can never spill outside on any screen size */
   .hero-photo{
     margin-top:44px; width:min(320px, 78vw); aspect-ratio:4/5;
     position:relative;
@@ -314,6 +315,12 @@
     background:
       linear-gradient(160deg, #E3EAF6, #CBD8EC 55%, #AFC2DC);
     display:flex; align-items:center; justify-content:center;
+    overflow:hidden; /* keeps the photo confined to the frame on every screen size */
+  }
+  .hero-photo .frame img{
+    width:100%; height:100%;
+    object-fit:cover; object-position:center 18%;
+    display:block;
   }
   .hero-photo .frame .ph-label{
     font-family:'Cormorant Garamond', serif; font-style:italic; color:var(--gold-deep); font-size:1rem; text-align:center; padding:0 20px;
@@ -401,6 +408,7 @@
     background:linear-gradient(150deg, #E3EAF6, #CBD8EC 60%, #AFC2DC);
     border:1px solid var(--gold-pale); box-shadow:var(--shadow);
     display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
   }
   .venue-illustration span{font-family:'Cormorant Garamond', serif; font-style:italic; color:var(--gold-deep);}
   .venue-illustration.has-photo{background:var(--paper); padding:0; overflow:hidden;}
@@ -416,25 +424,32 @@
     border:1px solid var(--gold-pale); box-shadow:0 8px 22px rgba(46,42,36,0.1);
     cursor:pointer; position:relative;
   }
+  .g-item img{
+    width:100%; height:auto; display:block; /* real photo keeps its own aspect ratio, so it can never overflow its card */
+    transition:transform 0.4s ease;
+  }
+  .g-item:hover img{transform:scale(1.04);}
   .g-item .ph{
     width:100%; display:flex; align-items:center; justify-content:center;
     background:linear-gradient(160deg, #E3EAF6, #CBD8EC 55%, #AFC2DC);
     color:var(--gold-deep); font-family:'Cormorant Garamond', serif; font-style:italic;
     padding:38% 10px;
   }
-  .g-item:nth-child(3n+1) .ph{padding:50% 10px;}
-  .g-item:nth-child(3n+2) .ph{padding:30% 10px;}
   .lightbox{
     position:fixed; inset:0; background:rgba(46,42,36,0.88); z-index:400;
     display:none; align-items:center; justify-content:center; padding:30px;
   }
   .lightbox.open{display:flex;}
   .lightbox .lb-inner{
-    width:min(560px,90vw); aspect-ratio:4/5; background:linear-gradient(160deg,#E3EAF6,#CBD8EC 55%,#AFC2DC);
-    border:6px solid var(--paper); display:flex; align-items:center; justify-content:center;
-    font-family:'Cormorant Garamond', serif; font-style:italic; color:var(--gold-deep); font-size:1.2rem;
+    width:min(560px,90vw); max-height:86vh;
+    display:flex; align-items:center; justify-content:center;
   }
-  .lb-close{position:absolute; top:24px; right:30px; color:var(--ivory); font-size:1.8rem; cursor:pointer; background:none; border:none;}
+  .lightbox .lb-inner img{
+    max-width:100%; max-height:86vh; width:auto; height:auto;
+    border:6px solid var(--paper); box-shadow:0 20px 60px rgba(0,0,0,0.4);
+    object-fit:contain;
+  }
+  .lb-close{position:absolute; top:24px; right:30px; color:var(--ivory); font-size:1.8rem; cursor:pointer; background:none; border:none; z-index:2;}
 
   /* WHERE TO STAY */
   #stay{background:var(--maroon); color:var(--ivory);}
@@ -583,7 +598,7 @@
       <div class="item"><div class="k">Venue</div><div class="v">St. George Orthodox Church</div></div>
     </div>
     <div class="hero-photo">
-      <div class="frame"><div class="ph-label">Jacob &amp; Rini<br>— photograph —</div></div>
+      <div class="frame"><img src="recep.jpg" alt="Jacob &amp; Rini"></div>
     </div>
     <div class="scroll-indicator">
       <div class="line"></div>
@@ -665,6 +680,18 @@ And as we step into this new chapter, we do so with grateful hearts, trusting th
     </div>
   </section>
 
+   <!-- GALLERY -->
+  <section id="gallery" class="section">
+    <div class="eyebrow fade-up">Our Wedding Story, About to Begin</div>
+    <h2 class="section-title fade-up">Sacred Moments We Await</h2>
+    <div class="masonry fade-up" id="masonry">
+      <div class="g-item" data-img="images/finalwed.jpg"><img src="mothiramvazhvu.jpg" alt="Jacob & Rini"></div>
+      <div class="g-item" data-img="images/tying_the_knot.jpg"><img src="kireedamvazhvu.jpg" alt="Tying the knot"></div>
+      <div class="g-item" data-img="images/kireedamvazhvu.jpg"><img src="tying the knot.jpg" alt="Kireedam Vazhvu"></div>
+      <div class="g-item" data-img="images/mothiramvazhvu.jpg"><img src="finalwed.jpg" alt="Mothiram Vazhvu"></div>
+    </div>
+  </section>
+
   <!-- RECEPTION -->
   <section id="reception" class="section">
     <div class="eyebrow fade-up">Join Us After The Ceremony</div>
@@ -675,21 +702,11 @@ And as we step into this new chapter, we do so with grateful hearts, trusting th
       <div class="venue">Sacred Heart Convention Centre<br>Mylapra</div>
         <div class="venue-illustration fade-up has-photo">
   <img src="reception.jpg" alt="Sacred Heart Convention Centre, Mylapra">
+  </div>
+  <a class="btn fade-up" href="https://www.google.com/maps/search/Sacred+Heart+Auditorium+Mylapra" target="_blank" rel="noopener">Get Directions</a>
 </div></section>
 
-  <!-- GALLERY -->
-  <section id="gallery" class="section">
-    <div class="eyebrow fade-up">A Few Favourite Moments</div>
-    <h2 class="section-title fade-up">Photo Gallery</h2>
-    <div class="masonry fade-up" id="masonry">
-      <div class="g-item" data-i="1"><div class="ph">Photo 1</div></div>
-      <div class="g-item" data-i="2"><div class="ph">Photo 2</div></div>
-      <div class="g-item" data-i="3"><div class="ph">Photo 3</div></div>
-      <div class="g-item" data-i="4"><div class="ph">Photo 4</div></div>
-      <div class="g-item" data-i="5"><div class="ph">Photo 5</div></div>
-      <div class="g-item" data-i="6"><div class="ph">Photo 6</div></div>
-    </div>
-  </section>
+ 
 
   <!-- WHERE TO STAY -->
   <section id="stay" class="section">
@@ -723,7 +740,6 @@ And as we step into this new chapter, we do so with grateful hearts, trusting th
         </ul>
         <div class="stay-actions">
           <a class="stay-btn primary" href="https://www.booking.com/searchresults.html?ss=Pathanamthitta" target="_blank" rel="noopener">Search Hotels</a>
-          <!-- <a class="stay-btn secondary" href="https://www.airbnb.co.in/s/Pathanamthitta" target="_blank" rel="noopener">Search Rentals</a> -->
         </div>
       </div>
 
@@ -738,7 +754,6 @@ And as we step into this new chapter, we do so with grateful hearts, trusting th
         </ul>
         <div class="stay-actions">
           <a class="stay-btn primary" href="https://www.booking.com/searchresults.html?ss=Kozhencherry" target="_blank" rel="noopener">Search Hotels</a>
-          <!-- <a class="stay-btn secondary" href="https://www.airbnb.co.in/s/Kozhencherry" target="_blank" rel="noopener">Search Rentals</a> -->
         </div>
       </div>
 
@@ -753,7 +768,6 @@ And as we step into this new chapter, we do so with grateful hearts, trusting th
         </ul>
         <div class="stay-actions">
           <a class="stay-btn primary" href="https://www.booking.com/searchresults.html?ss=Konni" target="_blank" rel="noopener">Search Hotels</a>
-          <!-- <a class="stay-btn secondary" href="https://www.airbnb.co.in/s/Konni" target="_blank" rel="noopener">Search Rentals</a> -->
         </div>
       </div>
 
@@ -768,7 +782,6 @@ And as we step into this new chapter, we do so with grateful hearts, trusting th
         </ul>
         <div class="stay-actions">
           <a class="stay-btn primary" href="https://www.booking.com/searchresults.html?ss=Thiruvalla" target="_blank" rel="noopener">Search Hotels</a>
-          <!-- <a class="stay-btn secondary" href="https://www.airbnb.co.in/s/Thiruvalla" target="_blank" rel="noopener">Search Rentals</a> -->
         </div>
       </div>
     </div>
@@ -776,7 +789,7 @@ And as we step into this new chapter, we do so with grateful hearts, trusting th
 
   <div class="lightbox" id="lightbox">
     <button class="lb-close" id="lb-close">&times;</button>
-    <div class="lb-inner" id="lb-inner">Photo</div>
+    <div class="lb-inner" id="lb-inner"><img id="lb-img" src="" alt="Gallery photo"></div>
   </div>
 
 
@@ -856,10 +869,10 @@ And as we step into this new chapter, we do so with grateful hearts, trusting th
 
   /* ---------------- GALLERY LIGHTBOX ---------------- */
   var lightbox = document.getElementById("lightbox");
-  var lbInner = document.getElementById("lb-inner");
+  var lbImg = document.getElementById("lb-img");
   document.querySelectorAll(".g-item").forEach(function(item){
     item.addEventListener("click", function(){
-      lbInner.textContent = "Photo " + item.getAttribute("data-i");
+      lbImg.src = item.getAttribute("data-img");
       lightbox.classList.add("open");
     });
   });
