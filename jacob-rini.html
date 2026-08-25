@@ -71,87 +71,77 @@
   /* ---------- CROSS MOTIF (Mar Thoma / St. Thomas Cross, subject-grounded ornament) ---------- */
   .cross-motif{width:26px; height:26px; opacity:0.85;}
 
-  /* ================= ENVELOPE SCREEN (full-bleed) ================= */
+  /* ================= ENVELOPE SCREEN (full-bleed, light paper front) ================= */
   #envelope-screen{
     position:fixed; inset:0; z-index:999;
-    display:flex; flex-direction:column; align-items:center; justify-content:flex-end;
-    padding-bottom:12vh;
     overflow:hidden;
     background:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 260'%3E%3Cg fill='none' stroke='%23CBD9EC' stroke-width='1' opacity='0.14' stroke-linecap='round'%3E%3Cpath d='M70 30 Q66 55 74 78'/%3E%3Cpath d='M70 40 Q80 36 88 44'/%3E%3Cpath d='M70 55 Q58 52 52 60'/%3E%3Cpath d='M150 20 Q147 46 154 66'/%3E%3Cpath d='M150 30 Q160 26 168 34'/%3E%3Cpath d='M150 44 Q139 41 133 49'/%3E%3Cpath d='M310 32 Q306 56 314 76'/%3E%3Cpath d='M310 42 Q320 38 328 46'/%3E%3Cpath d='M310 55 Q299 52 293 60'/%3E%3Ccircle cx='60' cy='90' r='13'/%3E%3Ccircle cx='56' cy='84' r='8'/%3E%3Ccircle cx='68' cy='84' r='8'/%3E%3Ccircle cx='56' cy='95' r='8'/%3E%3Ccircle cx='68' cy='95' r='8'/%3E%3Ccircle cx='62' cy='90' r='4'/%3E%3Cpath d='M165 70 Q158 60 148 62 Q152 72 165 70Z'/%3E%3Cpath d='M165 70 Q172 60 182 62 Q178 72 165 70Z'/%3E%3Cpath d='M165 70 Q160 82 165 92 Q170 82 165 70Z'/%3E%3C/g%3E%3C/svg%3E") repeat,
-      linear-gradient(165deg, #5B7391, var(--maroon) 55%, #1B2634 100%);
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 260'%3E%3Cg fill='none' stroke='%235E7CA3' stroke-width='1' opacity='0.22' stroke-linecap='round'%3E%3Cpath d='M70 30 Q66 55 74 78'/%3E%3Cpath d='M70 40 Q80 36 88 44'/%3E%3Cpath d='M70 55 Q58 52 52 60'/%3E%3Cpath d='M150 20 Q147 46 154 66'/%3E%3Cpath d='M150 30 Q160 26 168 34'/%3E%3Cpath d='M150 44 Q139 41 133 49'/%3E%3Cpath d='M310 32 Q306 56 314 76'/%3E%3Cpath d='M310 42 Q320 38 328 46'/%3E%3Cpath d='M310 55 Q299 52 293 60'/%3E%3Ccircle cx='60' cy='90' r='13'/%3E%3Ccircle cx='56' cy='84' r='8'/%3E%3Ccircle cx='68' cy='84' r='8'/%3E%3Ccircle cx='56' cy='95' r='8'/%3E%3Ccircle cx='68' cy='95' r='8'/%3E%3Ccircle cx='62' cy='90' r='4'/%3E%3Cpath d='M165 70 Q158 60 148 62 Q152 72 165 70Z'/%3E%3Cpath d='M165 70 Q172 60 182 62 Q178 72 165 70Z'/%3E%3Cpath d='M165 70 Q160 82 165 92 Q170 82 165 70Z'/%3E%3C/g%3E%3C/svg%3E") repeat,
+      linear-gradient(165deg, var(--paper), var(--ivory) 55%, #E3EAF6 100%);
     background-size:260px 260px, cover;
     transition:opacity 1s ease, visibility 1s ease;
   }
-  #envelope-screen::before{
-    content:'';
-    position:absolute; inset:0;
-    background-image:radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
-    background-size:3px 3px;
-    pointer-events:none;
-  }
 
-  /* the flap — a full-width triangle draped over the top of the screen */
-  .env-flap-full{
-    position:absolute; top:0; left:0; width:100%; height:52%;
-    clip-path:polygon(0 0, 100% 0, 50% 100%);
-    background:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 260'%3E%3Cg fill='none' stroke='%23CBD9EC' stroke-width='1' opacity='0.16' stroke-linecap='round'%3E%3Cpath d='M70 30 Q66 55 74 78'/%3E%3Cpath d='M70 40 Q80 36 88 44'/%3E%3Cpath d='M70 55 Q58 52 52 60'/%3E%3Cpath d='M150 20 Q147 46 154 66'/%3E%3Cpath d='M150 30 Q160 26 168 34'/%3E%3Cpath d='M150 44 Q139 41 133 49'/%3E%3Ccircle cx='60' cy='90' r='13'/%3E%3Ccircle cx='56' cy='84' r='8'/%3E%3Ccircle cx='68' cy='84' r='8'/%3E%3Ccircle cx='56' cy='95' r='8'/%3E%3Ccircle cx='68' cy='95' r='8'/%3E%3Ccircle cx='62' cy='90' r='4'/%3E%3Cpath d='M285 70 Q278 60 268 62 Q272 72 285 70Z'/%3E%3Cpath d='M285 70 Q292 60 302 62 Q298 72 285 70Z'/%3E%3Cpath d='M285 70 Q280 82 285 92 Q290 82 285 70Z'/%3E%3C/g%3E%3C/svg%3E") repeat,
-      linear-gradient(200deg, #6C87A8, var(--maroon) 75%);
-    background-size:260px 260px, cover;
-    border-bottom:1px solid rgba(203,217,236,0.4);
-    box-shadow:0 10px 30px rgba(10,15,22,0.35);
-    transform-origin:top center;
-    transition:transform 1s cubic-bezier(.65,0,.35,1);
-    z-index:3;
+  /* front-of-envelope fold lines, drawn once across the whole screen */
+  .env-lines{
+    position:absolute; inset:0; width:100%; height:100%;
+    z-index:2; pointer-events:none;
+    transition:opacity 0.8s ease, transform 0.8s ease;
   }
+  .env-lines .fold{ fill:none; stroke:var(--gold-deep); stroke-width:0.6; opacity:0.55; vector-effect:non-scaling-stroke; }
+  .env-lines .shade{ fill:var(--maroon); opacity:0.04; }
 
   .tap-reveal-label{
-    position:absolute; left:50%; top:38%; transform:translate(-50%,-50%);
-    font-family:'Alex Brush', cursive; font-size:1.7rem; color:var(--gold-pale);
+    position:absolute; left:50%; top:61%; transform:translate(-50%,-50%);
     z-index:6; pointer-events:none; text-align:center; width:100%;
-    text-shadow:0 1px 3px rgba(0,0,0,0.35);
-    opacity:0; animation:softIn 1s ease forwards 1.4s;
+    display:flex; flex-direction:column; align-items:center; gap:10px;
+    opacity:0; animation:softIn 1s ease forwards 1.2s;
   }
+  .tap-reveal-label svg{ animation:chevronBounce 1.8s ease-in-out infinite; }
+  .tap-reveal-label span{
+    font-size:0.72rem; letter-spacing:0.32em; text-transform:uppercase; color:var(--gold-deep);
+  }
+  @keyframes chevronBounce{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(5px);} }
   @keyframes softIn{ to{opacity:1;} }
 
   .seal-wrap{
-    position:absolute; left:50%; top:52%; transform:translate(-50%,-50%);
+    position:absolute; left:50%; top:43%; transform:translate(-50%,-50%);
     z-index:5; cursor:pointer; -webkit-tap-highlight-color:transparent;
     opacity:0; animation:softIn 1s ease forwards 0.5s;
   }
   .seal{
-    width:82px; height:82px; border-radius:50%;
-    background:radial-gradient(circle at 35% 30%, #7A99BC, var(--maroon) 60%, #1E2A3A 100%);
+    width:88px; height:88px; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #6C87A8, var(--maroon) 65%, #1B2634 100%);
     display:flex; align-items:center; justify-content:center;
-    box-shadow:0 8px 18px rgba(10,15,22,0.55), inset 0 -4px 8px rgba(0,0,0,0.25), inset 0 3px 6px rgba(255,255,255,0.18);
-    border:1px solid rgba(203,217,236,0.6);
+    box-shadow:0 8px 20px rgba(30,42,58,0.4), inset 0 -4px 8px rgba(0,0,0,0.25), inset 0 3px 6px rgba(255,255,255,0.15);
+    border:1.5px solid var(--gold);
     animation:sealPulse 2.4s ease-in-out infinite;
     transition:transform 0.25s ease;
   }
   .seal-wrap:hover .seal{transform:scale(1.05);}
   .seal-wrap:active .seal{transform:scale(0.94);}
   @keyframes sealPulse{
-    0%,100%{box-shadow:0 8px 18px rgba(10,15,22,0.55), 0 0 0 0 rgba(203,217,236,0.35), inset 0 -4px 8px rgba(0,0,0,0.25), inset 0 3px 6px rgba(255,255,255,0.18);}
-    50%{box-shadow:0 8px 18px rgba(10,15,22,0.55), 0 0 0 12px rgba(203,217,236,0), inset 0 -4px 8px rgba(0,0,0,0.25), inset 0 3px 6px rgba(255,255,255,0.18);}
+    0%,100%{box-shadow:0 8px 20px rgba(30,42,58,0.4), 0 0 0 0 rgba(184,146,90,0.28), inset 0 -4px 8px rgba(0,0,0,0.25), inset 0 3px 6px rgba(255,255,255,0.15);}
+    50%{box-shadow:0 8px 20px rgba(30,42,58,0.4), 0 0 0 12px rgba(184,146,90,0), inset 0 -4px 8px rgba(0,0,0,0.25), inset 0 3px 6px rgba(255,255,255,0.15);}
   }
   .seal-monogram{
-    font-family:'Cormorant Garamond', serif; color:var(--gold-pale);
-    font-size:1.6rem; letter-spacing:1px; text-align:center; line-height:1;
+    font-family:'Cormorant Garamond', serif; color:var(--ivory);
+    font-size:1.65rem; letter-spacing:1px; text-align:center; line-height:1; font-weight:500;
+    text-shadow:0 1px 2px rgba(0,0,0,0.3);
   }
 
   .envelope-invite-text{
-    position:relative; z-index:2; text-align:center;
-    opacity:0; animation:softIn 1.4s ease forwards 1.8s;
+    position:absolute; left:50%; top:83%; transform:translate(-50%,-50%);
+    z-index:2; text-align:center; width:100%;
+    opacity:0; animation:softIn 1.4s ease forwards 1.6s;
   }
-  .envelope-invite-text .eyebrow{margin-bottom:8px; color:var(--gold-pale);}
+  .envelope-invite-text .eyebrow{margin-bottom:8px; color:var(--gold-deep);}
   .envelope-invite-text .names-mini{
-    font-size:clamp(1.8rem,5vw,2.6rem); color:var(--ivory); font-weight:500;
-    text-shadow:0 2px 10px rgba(0,0,0,0.3);
+    font-size:clamp(1.6rem,4.4vw,2.2rem); color:var(--maroon); font-weight:500;
   }
 
   /* opening state animations */
-  body.opening .env-flap-full{ transform:rotateX(160deg); }
+  body.opening .env-lines{ opacity:0; transform:scale(0.97); }
   body.opening .seal-wrap{ animation:sealBreak 0.5s ease forwards; }
   body.opening .tap-reveal-label{ opacity:0; transition:opacity 0.35s ease; }
   body.opening .envelope-invite-text{ opacity:0; transition:opacity 0.4s ease; }
@@ -161,7 +151,7 @@
     100%{opacity:0; transform:translate(-50%,-50%) scale(0.4) rotate(20deg);}
   }
   body.opening #envelope-screen{
-    transition:opacity 0.9s ease 1.15s, visibility 0.9s ease 1.15s;
+    transition:opacity 0.9s ease 0.55s, visibility 0.9s ease 0.55s;
   }
   body.opened #envelope-screen{
     opacity:0; visibility:hidden; pointer-events:none;
@@ -171,7 +161,8 @@
   @media (prefers-reduced-motion: reduce){
     .seal{animation:none !important;}
     .tap-reveal-label, .seal-wrap, .envelope-invite-text{animation-duration:0.3s !important; animation-delay:0s !important;}
-    body.opening .env-flap-full, body.opening #envelope-screen{
+    .tap-reveal-label svg{animation:none !important;}
+    body.opening .env-lines, body.opening #envelope-screen{
       transition-duration:0.3s !important; transition-delay:0s !important;
     }
     body.opening .seal-wrap{animation-duration:0.2s !important;}
@@ -271,6 +262,53 @@
   }
   .scroll-indicator .line{width:1px; height:34px; background:var(--gold); animation:scrollLine 1.8s ease-in-out infinite;}
   @keyframes scrollLine{ 0%{transform:scaleY(0); transform-origin:top;} 50%{transform:scaleY(1); transform-origin:top;} 51%{transform-origin:bottom;} 100%{transform:scaleY(0); transform-origin:bottom;} }
+
+  /* ARCH HERO — Moorish-style frame with floral crown and the reception photo */
+  .hero-arch-wrap{
+    position:relative; width:min(340px, 86vw); margin:0 auto;
+  }
+  .hero-arch{
+    position:relative; width:100%;
+    padding:56px 22px 26px;
+    border:1px solid var(--gold);
+    border-top-left-radius:170px 170px; border-top-right-radius:170px 170px;
+    border-bottom-left-radius:6px; border-bottom-right-radius:6px;
+    background:linear-gradient(180deg, var(--ivory), var(--paper));
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    opacity:0; animation:heroIn 1.2s ease forwards 0.3s;
+  }
+  .hero-arch::before{
+    content:''; position:absolute; inset:9px;
+    border:1px solid var(--gold-pale);
+    border-top-left-radius:150px 150px; border-top-right-radius:150px 150px;
+    border-bottom-left-radius:3px; border-bottom-right-radius:3px;
+    pointer-events:none;
+  }
+  /* vine sits outside the clipped arch box so it can drape over the top edge and down the outer curve */
+  .hero-arch-vine{
+    position:absolute; top:-34px; left:0; width:100%; height:130px; z-index:3; pointer-events:none;
+    opacity:0; animation:heroIn 1.4s ease forwards 0.7s;
+  }
+  .hero-arch .hero-eyebrow, .hero-arch .hero-date-tiny, .hero-arch .hero-names, .hero-arch .scroll-down, .hero-arch .hero-arch-photo{
+    position:relative; z-index:2;
+  }
+  .hero-date-tiny{
+    font-size:0.95rem; letter-spacing:0.18em; color:var(--gold-deep); margin-top:6px;
+    font-family:'Cormorant Garamond', serif;
+  }
+  .hero-names--arch{ margin:12px 0 6px; font-size:clamp(2.2rem, 8vw, 2.8rem); }
+  .scroll-down{
+    display:flex; flex-direction:column; align-items:center; gap:4px; margin:6px 0 10px;
+  }
+  .scroll-down span{ font-family:'Cormorant Garamond', serif; font-style:italic; font-size:0.95rem; color:var(--ink-soft); }
+  .scroll-down svg{ animation:chevronBounce 1.8s ease-in-out infinite; }
+  .hero-arch-photo{
+    width:100%; aspect-ratio:4/5; margin-top:4px; border-radius:6px;
+    overflow:hidden; border:1px solid var(--gold-pale); box-shadow:0 10px 24px rgba(46,42,36,0.14);
+  }
+  .hero-arch-photo img{ width:100%; height:100%; object-fit:cover; display:block; object-position:center 12%; }
+
 
   /* INVITATION DETAILS */
   #ceremony{background:var(--paper);}
@@ -465,16 +503,26 @@
 
 <!-- ================= ENVELOPE SCREEN ================= -->
 <div id="envelope-screen">
-  <div class="env-flap-full"></div>
- 
+  <svg class="env-lines" viewBox="0 0 100 200" preserveAspectRatio="none" aria-hidden="true">
+    <polygon class="shade" points="0,0 50,43 100,0"></polygon>
+    <path class="fold" d="M0,0 L50,43 L100,0"></path>
+    <path class="fold" d="M0,200 L50,118 L100,200"></path>
+  </svg>
+
   <div class="seal-wrap" id="seal-trigger" role="button" aria-label="Open invitation" tabindex="0">
     <div class="seal">
       <div class="seal-monogram">J&nbsp;&amp;&nbsp;R</div>
     </div>
   </div>
+
+  <div class="tap-reveal-label">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    <!-- <span>Tap to Open</span> -->
+  </div>
+
   <div class="envelope-invite-text">
     <div class="eyebrow">Together with our families</div>
-    <div class="names-mini">Jacob <span class="script" style="font-size:1.1em; color:var(--gold-pale);">&amp;</span> Rini</div>
+    <div class="names-mini">Jacob <span class="script" style="font-size:1.1em; color:var(--gold);">&amp;</span> Rini</div>
   </div>
 </div>
 
@@ -508,9 +556,81 @@
 
   <!-- HERO -->
   <section id="home">
-    <div class="hero-eyebrow eyebrow">Together with our families</div>
-    <h1 class="hero-names">Jacob <span class="amp">&amp;</span> Rini</h1>
-    <p class="hero-sub">we invite you to celebrate our wedding, with joy, faith and the blessing of God</p>
+    <div class="hero-arch-wrap">
+      <svg class="hero-arch-vine" viewBox="0 0 340 110" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <defs>
+          <g id="bloom">
+            <ellipse cx="0" cy="-5.2" rx="3.1" ry="4.6" fill="var(--maroon)"/>
+            <ellipse cx="0" cy="-5.2" rx="3.1" ry="4.6" fill="var(--maroon)" transform="rotate(72)"/>
+            <ellipse cx="0" cy="-5.2" rx="3.1" ry="4.6" fill="var(--maroon)" transform="rotate(144)"/>
+            <ellipse cx="0" cy="-5.2" rx="3.1" ry="4.6" fill="var(--maroon)" transform="rotate(216)"/>
+            <ellipse cx="0" cy="-5.2" rx="3.1" ry="4.6" fill="var(--maroon)" transform="rotate(288)"/>
+            <circle cx="0" cy="0" r="2" fill="var(--gold)"/>
+          </g>
+          <g id="bud">
+            <circle cx="0" cy="0" r="2.6" fill="var(--gold)"/>
+          </g>
+          <g id="leaf">
+            <path d="M0,0 C4,-3.4 9,-3.4 12,0 C9,3.4 4,3.4 0,0 Z" fill="var(--gold-deep)" opacity="0.65"/>
+          </g>
+        </defs>
+
+        <!-- stems -->
+        <g fill="none" stroke="var(--gold)" stroke-width="1" stroke-linecap="round" opacity="0.7">
+          <path d="M170 16 C132 10 96 12 66 24 C46 32 30 46 20 66 C15 76 13 84 13 92"/>
+          <path d="M170 16 C208 10 244 12 274 24 C294 32 310 46 320 66 C325 76 327 84 327 92"/>
+        </g>
+
+        <!-- apex cluster -->
+        <use href="#bloom" transform="translate(170,16) scale(1.35)"/>
+        <use href="#bloom" transform="translate(148,22) scale(1)"/>
+        <use href="#bloom" transform="translate(192,22) scale(1)"/>
+        <use href="#leaf" transform="translate(158,10) rotate(-20)"/>
+        <use href="#leaf" transform="translate(182,10) rotate(20) scale(-1,1)"/>
+        <use href="#bud" transform="translate(170,30)"/>
+
+        <!-- left cascade -->
+        <use href="#bloom" transform="translate(96,15) scale(0.9)"/>
+        <use href="#leaf" transform="translate(108,14) rotate(-10)"/>
+        <use href="#bloom" transform="translate(58,26) scale(1)"/>
+        <use href="#bud" transform="translate(78,20)"/>
+        <use href="#leaf" transform="translate(66,18) rotate(-35)"/>
+        <use href="#bloom" transform="translate(30,48) scale(0.9)"/>
+        <use href="#leaf" transform="translate(42,38) rotate(-45)"/>
+        <use href="#bud" transform="translate(20,60)"/>
+        <use href="#bloom" transform="translate(13,80) scale(0.75)"/>
+        <use href="#leaf" transform="translate(16,68) rotate(-70)"/>
+
+        <!-- right cascade (mirrored) -->
+        <use href="#bloom" transform="translate(244,15) scale(0.9)"/>
+        <use href="#leaf" transform="translate(232,14) rotate(10) scale(-1,1)"/>
+        <use href="#bloom" transform="translate(282,26) scale(1)"/>
+        <use href="#bud" transform="translate(262,20)"/>
+        <use href="#leaf" transform="translate(274,18) rotate(35) scale(-1,1)"/>
+        <use href="#bloom" transform="translate(310,48) scale(0.9)"/>
+        <use href="#leaf" transform="translate(298,38) rotate(45) scale(-1,1)"/>
+        <use href="#bud" transform="translate(320,60)"/>
+        <use href="#bloom" transform="translate(327,80) scale(0.75)"/>
+        <use href="#leaf" transform="translate(324,68) rotate(70) scale(-1,1)"/>
+      </svg>
+
+      <div class="hero-arch">
+        <div class="hero-eyebrow eyebrow">Wedding Day</div>
+        <div class="hero-date-tiny">9 . 11 . 2026</div>
+        <h1 class="hero-names hero-names--arch">Jacob<span class="amp">&amp;</span>Rini</h1>
+
+        <div class="scroll-down">
+          <span>Scroll down</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+
+        <div class="hero-arch-photo">
+          <img src="recep.jpg" alt="Jacob &amp; Rini">
+        </div>
+      </div>
+    </div>
+
+    <p class="hero-sub">We invite you to celebrate our wedding, with joy, faith and the blessing of God</p>
     <div class="hero-divider divider">
       <svg class="cross-motif" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.4"><path d="M12 2v20M4 8h16M6 14h12"/></svg>
     </div>
@@ -518,13 +638,6 @@
       <div class="item"><div class="k">Date</div><div class="v">9 November 2026</div></div>
       <div class="item"><div class="k">Time</div><div class="v">12:00 PM</div></div>
       <div class="item"><div class="k">Venue</div><div class="v">St. George Orthodox Church</div></div>
-    </div>
-    <div class="hero-photo">
-      <div class="frame"><img src="recep.jpg" alt="Jacob &amp; Rini"></div>
-    </div>
-    <div class="scroll-indicator">
-      <div class="line"></div>
-      <div class="eyebrow" style="font-size:0.62rem;">Scroll</div>
     </div>
   </section>
 
@@ -718,7 +831,7 @@
     if(STATE !== "CLOSED") return;
     STATE = "OPENING";
     body.classList.add("opening");
-    var revealDelay = reduceMotion ? 350 : 2100;
+    var revealDelay = reduceMotion ? 350 : 1150;
     setTimeout(function(){
       STATE = "OPENED";
       body.classList.add("opened");
