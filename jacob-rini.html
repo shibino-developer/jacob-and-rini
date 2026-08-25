@@ -110,25 +110,22 @@
     opacity:0; animation:softIn 1s ease forwards 0.5s;
   }
   .seal{
-    width:88px; height:88px; border-radius:50%;
-    background:radial-gradient(circle at 35% 30%, #6C87A8, var(--maroon) 65%, #1B2634 100%);
-    display:flex; align-items:center; justify-content:center;
-    box-shadow:0 8px 20px rgba(30,42,58,0.4), inset 0 -4px 8px rgba(0,0,0,0.25), inset 0 3px 6px rgba(255,255,255,0.15);
-    border:1.5px solid var(--gold);
+    width:92px; height:92px; display:block;
+    filter:drop-shadow(0 8px 14px rgba(30,42,58,0.45));
     animation:sealPulse 2.4s ease-in-out infinite;
     transition:transform 0.25s ease;
   }
   .seal-wrap:hover .seal{transform:scale(1.05);}
   .seal-wrap:active .seal{transform:scale(0.94);}
   @keyframes sealPulse{
-    0%,100%{box-shadow:0 8px 20px rgba(30,42,58,0.4), 0 0 0 0 rgba(184,146,90,0.28), inset 0 -4px 8px rgba(0,0,0,0.25), inset 0 3px 6px rgba(255,255,255,0.15);}
-    50%{box-shadow:0 8px 20px rgba(30,42,58,0.4), 0 0 0 12px rgba(184,146,90,0), inset 0 -4px 8px rgba(0,0,0,0.25), inset 0 3px 6px rgba(255,255,255,0.15);}
+    0%,100%{filter:drop-shadow(0 8px 14px rgba(30,42,58,0.45)) drop-shadow(0 0 0 rgba(184,146,90,0.3));}
+    50%{filter:drop-shadow(0 8px 14px rgba(30,42,58,0.45)) drop-shadow(0 0 10px rgba(184,146,90,0));}
   }
   .seal-monogram{
-    font-family:'Cormorant Garamond', serif; color:var(--ivory);
-    font-size:1.65rem; letter-spacing:1px; text-align:center; line-height:1; font-weight:500;
-    text-shadow:0 1px 2px rgba(0,0,0,0.3);
+    font-family:'Cormorant Garamond', serif; fill:var(--ivory);
+    font-size:19px; letter-spacing:0.5px; text-anchor:middle; font-weight:500;
   }
+
 
   .envelope-invite-text{
     position:absolute; left:50%; top:83%; transform:translate(-50%,-50%);
@@ -510,9 +507,18 @@
   </svg>
 
   <div class="seal-wrap" id="seal-trigger" role="button" aria-label="Open invitation" tabindex="0">
-    <div class="seal">
-      <div class="seal-monogram">J&nbsp;&amp;&nbsp;R</div>
-    </div>
+    <svg class="seal" viewBox="0 0 100 92" aria-hidden="true">
+      <defs>
+        <radialGradient id="sealGrad" cx="35%" cy="28%" r="80%">
+          <stop offset="0%" stop-color="#6C87A8"/>
+          <stop offset="60%" stop-color="var(--maroon)"/>
+          <stop offset="100%" stop-color="#1B2634"/>
+        </radialGradient>
+      </defs>
+      <path d="M50 87 C50 87 6 56 6 29 C6 13 18 3 32 3 C40 3 47 8 50 17 C53 8 60 3 68 3 C82 3 94 13 94 29 C94 56 50 87 50 87 Z"
+            fill="url(#sealGrad)" stroke="var(--gold)" stroke-width="3"/>
+      <text x="50" y="42" class="seal-monogram">J &amp; R</text>
+    </svg>
   </div>
 
   <div class="tap-reveal-label">
