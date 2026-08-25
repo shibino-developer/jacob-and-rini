@@ -556,7 +556,7 @@
         <radialGradient id="sealGrad" cx="35%" cy="28%" r="80%">
           <stop offset="0%" stop-color="#6C87A8"/>
           <stop offset="60%" stop-color="var(--gold-maroon)"/>
-          <stop offset="100%" stop-color="var(--gold-maroon)"/>
+          <stop offset="100%" stop-color="#1B2634"/>
         </radialGradient>
       </defs>
       <path d="M50 87 C50 87 6 56 6 29 C6 13 18 3 32 3 C40 3 47 8 50 17 C53 8 60 3 68 3 C82 3 94 13 94 29 C94 56 50 87 50 87 Z"
@@ -865,11 +865,30 @@
 </div>
 
 <button id="music-btn" aria-label="Toggle background music">&#9835;</button>
-<audio id="bg-audio" loop preload="none"></audio>
+<audio id="bg-audio" loop preload="none">
+  <source src="marriage_audio.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 (function(){
   "use strict";
+
+  /* ---------------- MUSIC STATE (shared by envelope open + music button) ---------------- */
+  var musicBtn = document.getElementById("music-btn");
+  var audio = document.getElementById("bg-audio");
+  var playing = false;
+
+  function startMusic(){
+    if(playing) return;
+    playing = true;
+    musicBtn.classList.add("playing");
+    audio.play().catch(function(){ /* autoplay blocked; user can still tap the button */ playing = false; musicBtn.classList.remove("playing"); });
+  }
+  function stopMusic(){
+    playing = false;
+    musicBtn.classList.remove("playing");
+    audio.pause();
+  }
 
   /* ---------------- ENVELOPE STATE MACHINE ---------------- */
   var STATE = "CLOSED";
@@ -881,6 +900,7 @@
     if(STATE !== "CLOSED") return;
     STATE = "OPENING";
     body.classList.add("opening");
+    startMusic(); /* tapping the seal is a real user gesture, so the browser allows audio to start here */
     var revealDelay = reduceMotion ? 350 : 1150;
     setTimeout(function(){
       STATE = "OPENED";
@@ -953,17 +973,8 @@
   });
 
   /* ---------------- MUSIC TOGGLE ---------------- */
-  var musicBtn = document.getElementById("music-btn");
-  var audio = document.getElementById("bg-audio");
-  var playing = false;
   musicBtn.addEventListener("click", function(){
-    playing = !playing;
-    musicBtn.classList.toggle("playing", playing);
-    if(playing){
-      audio.play().catch(function(){ /* no audio source configured yet */ });
-    } else {
-      audio.pause();
-    }
+    if(playing){ stopMusic(); } else { startMusic(); }
   });
 
   /* ---------------- WHERE TO STAY (external links open in new tab; no extra logic needed) ---------------- */
