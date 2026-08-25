@@ -82,6 +82,24 @@
     transition:opacity 1s ease, visibility 1s ease;
   }
 
+  /* caricature of the bride & groom, sitting as a soft backdrop on the left side of the envelope */
+  .env-couple-bg{
+    position:absolute; left:0; top:0;
+    height:100%; width:62%;
+    max-width:520px;
+    object-fit:cover; object-position:top center;
+    z-index:0; pointer-events:none;
+    opacity:0.9;
+    -webkit-mask-image:linear-gradient(to right, black 0%, black 55%, transparent 92%);
+    mask-image:linear-gradient(to right, black 0%, black 55%, transparent 92%);
+  }
+  /* a light wash over the caricature so the seal, chevron and text on top stay easy to read */
+  .env-couple-tint{
+    position:absolute; left:0; top:0; height:100%; width:62%; max-width:520px;
+    z-index:1; pointer-events:none;
+    background:linear-gradient(180deg, rgba(249,251,254,0.35), rgba(249,251,254,0.55) 60%, rgba(249,251,254,0.85));
+  }
+
   /* front-of-envelope fold lines, drawn once across the whole screen */
   .env-lines{
     position:absolute; inset:0; width:100%; height:100%;
@@ -164,6 +182,18 @@
       transition-duration:0.3s !important; transition-delay:0s !important;
     }
     body.opening .seal-wrap{animation-duration:0.2s !important;}
+  }
+
+  @media (max-width:520px){
+    .env-couple-bg, .env-couple-tint{ width:100%; max-width:none; }
+    .env-couple-bg{
+      -webkit-mask-image:linear-gradient(180deg, black 0%, black 40%, transparent 78%);
+      mask-image:linear-gradient(180deg, black 0%, black 40%, transparent 78%);
+      object-position:top center;
+    }
+    .env-couple-tint{
+      background:linear-gradient(180deg, rgba(249,251,254,0.25), rgba(249,251,254,0.6) 45%, rgba(249,251,254,0.92) 78%, var(--ivory) 100%);
+    }
   }
 
   /* ================= SITE ================= */
@@ -501,6 +531,9 @@
 
 <!-- ================= ENVELOPE SCREEN ================= -->
 <div id="envelope-screen">
+  <img class="env-couple-bg" src="env.jpg" alt="Jacob &amp; Rini caricature">
+  <div class="env-couple-tint" aria-hidden="true"></div>
+
   <svg class="env-lines" viewBox="0 0 100 200" preserveAspectRatio="none" aria-hidden="true">
     <polygon class="shade" points="0,0 50,43 100,0"></polygon>
     <path class="fold" d="M0,0 L50,43 L100,0"></path>
@@ -697,7 +730,7 @@
     <div class="timeline">
       <div class="t-item fade-up"><div class="t-dot"></div>
         <h3>How We Met</h3>
-        <p>It all began with a little help from a matrimony website! 😊 Two profiles crossed paths, curiosity led to a meeting, and one conversation led to another. As we shared our dreams, values, and hopes, we discovered something truly special. What seemed like a simple coincidence slowly felt like God’s beautiful way of bringing two hearts together.</p>
+        <p>It all began with a little help from a matrimony website! 😊 Two profiles crossed paths, curiosity led to a meeting, and one conversation led to another. As we shared our dreams, values, and hopes, we discovered something truly special. What seemed like a simple coincidence slowly felt like God's beautiful way of bringing two hearts together.</p>
       </div>
       <div class="t-item fade-up"><div class="t-dot"></div>
         <h3>Our Journey</h3>
@@ -706,7 +739,7 @@
       </div>
       <div class="t-item fade-up"><div class="t-dot"></div>
         <h3>The Engagement</h3>
-        <p>With our hearts full of hope, we shared our journey with our families, seeking their love, prayers, and blessings. By God’s grace, their hearts too embraced our union, and both families came together in February 2026 to take this beautiful journey forward. With God’s providence and our families’ blessings, 9 November 2026 was chosen as the day our forever begins.</p>
+        <p>With our hearts full of hope, we shared our journey with our families, seeking their love, prayers, and blessings. By God's grace, their hearts too embraced our union, and both families came together in February 2026 to take this beautiful journey forward. With God's providence and our families' blessings, 9 November 2026 was chosen as the day our forever begins.</p>
       </div>
       <div class="t-item fade-up"><div class="t-dot"></div>
         <h3>The Wedding Day</h3>
