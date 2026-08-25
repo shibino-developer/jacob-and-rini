@@ -12,7 +12,8 @@
     --ivory:#EEF2FA;
     --paper:#F9FBFE;
     --gold:#B8925A;
-    --gold-deep:#5E7CA3;
+    --gold-deep:#0c0a57;
+    --gold-maroon:#570712;
     --gold-pale:#CBD9EC;
     --maroon:#33465E;
     --sage:#D89AA0;
@@ -108,6 +109,11 @@
   }
   .env-lines .fold{ fill:none; stroke:var(--gold-deep); stroke-width:0.6; opacity:0.55; vector-effect:non-scaling-stroke; }
   .env-lines .shade{ fill:var(--maroon); opacity:0.04; }
+  /* dim the fold lines specifically where they cross the caricature on the left */
+  .env-lines{
+    -webkit-mask-image:linear-gradient(to right, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.28) 58%, rgba(0,0,0,0.7) 100%);
+    mask-image:linear-gradient(to right, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.28) 58%, rgba(0,0,0,0.7) 100%);
+  }
 
   .tap-reveal-label{
     position:absolute; left:50%; top:61%; transform:translate(-50%,-50%);
@@ -123,7 +129,7 @@
   @keyframes softIn{ to{opacity:1;} }
 
   .seal-wrap{
-    position:absolute; left:50%; top:43%; transform:translate(-50%,-50%);
+    position:absolute; left:50%; top:49%; transform:translate(-50%,-50%);
     z-index:5; cursor:pointer; -webkit-tap-highlight-color:transparent;
     opacity:0; animation:softIn 1s ease forwards 0.5s;
   }
@@ -545,18 +551,18 @@
       <defs>
         <radialGradient id="sealGrad" cx="35%" cy="28%" r="80%">
           <stop offset="0%" stop-color="#6C87A8"/>
-          <stop offset="60%" stop-color="var(--maroon)"/>
+          <stop offset="60%" stop-color="var(--gold-maroon)"/>
           <stop offset="100%" stop-color="#1B2634"/>
         </radialGradient>
       </defs>
       <path d="M50 87 C50 87 6 56 6 29 C6 13 18 3 32 3 C40 3 47 8 50 17 C53 8 60 3 68 3 C82 3 94 13 94 29 C94 56 50 87 50 87 Z"
-            fill="url(#sealGrad)" stroke="var(--gold)" stroke-width="3"/>
+            fill="url(#sealGrad)" stroke="var(--gold-maroon)" stroke-width="3"/>
       <text x="50" y="42" class="seal-monogram">J &amp; R</text>
     </svg>
   </div>
 
   <div class="tap-reveal-label">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-maroon)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
     <!-- <span>Tap to Open</span> -->
   </div>
 
